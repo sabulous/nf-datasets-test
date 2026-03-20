@@ -6,7 +6,7 @@ params.outdir = params.outdir ?: 'results'
 process HEAD_TAIL {
     tag "${input_file.simpleName}"
 
-    publishDir "${params.outdir}", mode: 'copy'
+    publishDir "${params.outdir}/${workflow.runName}", mode: 'copy'
 
     input:
     path input_file
