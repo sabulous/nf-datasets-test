@@ -12,7 +12,7 @@
           "type": "string",
           "format": "file-path",
           "mimetype": "text/csv",
-          "pattern": "^\\S+\\.csv$",
+          "pattern": "^.*?\\.(csv|tsv)$",
           "description": "Path to the CSV dataset to use as pipeline input."
         }
       }
