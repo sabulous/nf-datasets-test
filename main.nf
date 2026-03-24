@@ -4,27 +4,22 @@ params.input  = params.input ?: null
 params.outdir = params.outdir ?: 'results'
 
 process HEAD_TAIL {
-  tag "${input_file.simpleName}"
+    tag "${input_file.simpleName}"
 
-  publishDir "${params.outdir}", mode: 'copy'
+    publishDir "${params.outdir}", mode: 'copy'
 
-  input:
-  path input_file
+    input:
+    path input_file
 
-  output:
-  path "*.txt"
+    output:
+    path "first3.txt"
+    path "last3.txt"
 
-  script:
-  """
-  run_id=\${TOWER_WORKFLOW_ID:-${workflow.sessionId}}
-  {
-      echo "=== First 3 lines ==="
-      head -n 3 ${input_file}
-      echo ""
-      echo "=== Last 3 lines ==="
-      tail -n 3 ${input_file}
-  } > \${run_id}.txt
-  """
+    script:
+    """
+    head -n 3 ${input_file} > first3.txt
+    tail -n 3 ${input_file} > last3.txt
+    """
 }
 
 workflow {
