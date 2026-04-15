@@ -4,6 +4,8 @@ params.input  = params.input ?: null
 params.outdir = params.outdir ?: 'results'
 
 process HEAD_TAIL {
+    container 'ubuntu:latest'
+
     tag "${input_file.simpleName}"
 
     publishDir "${params.outdir}", mode: 'copy'
